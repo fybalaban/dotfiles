@@ -1,3 +1,3 @@
-function df --description 'alias df df -ah'
- command df -ah $argv; 
+function df --description 'alias df df -ahT'
+ command df -ahT $argv; 
 end
