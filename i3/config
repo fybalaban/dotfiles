@@ -8,6 +8,7 @@ floating_modifier 	$mod
 exec --no-startup-id picom -b
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id ~/scripts/launch_polybar
+exec --no-startup-id rivalcfg --color=#FF66F5 --light-effect=breath -p=1000 -s=1000 -S=500
 
 font pango:jetbrainsmono-regular 8
 
