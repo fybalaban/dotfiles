@@ -8,7 +8,7 @@ floating_modifier 	$mod
 exec --no-startup-id picom -b
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id ~/scripts/launch_polybar
-exec --no-startup-id rivalcfg --color=#FF66F5 --light-effect=breath -p=1000 -s=1000 -S=500
+exec --no-startup-id ~/scripts/comingback.sh
 
 font pango:jetbrainsmono-regular 8
 
@@ -104,12 +104,13 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-set $mode_system System (l) lock, (e) logout, (r) reboot, (s) shutdown
+set $mode_system System (l) lock, (e) logout, (r) reboot, (s) shutdown, (b) back
 mode "$mode_system" {
-    bindsym l exec --no-startup-id betterlockscreen --lock --off 10, mode "default"
+    bindsym l exec --no-startup-id sh ~/scripts/goingaway.sh, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
     bindsym r exec --no-startup-id reboot, mode "default"
     bindsym s exec --no-startup-id shutdown -h now, mode "default"
+    bindsym b exec --no-startup-id sh ~/scripts/comingback.sh, mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
