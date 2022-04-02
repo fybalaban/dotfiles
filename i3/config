@@ -1,6 +1,7 @@
 # i3 config file (v4)
 #
-# ferit yigit balaban
+#       Ferit Yigit BALABAN <fyb@duck.com>, 2022
+#
 set 			$mod Mod4
 floating_modifier 	$mod
 
