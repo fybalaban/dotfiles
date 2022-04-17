@@ -1,3 +1,3 @@
-function ls --description 'alias ls=ls -l'
- command ls -l $argv; 
+function ls --description 'alias ls ls -lo --color=always'
+ command ls -lo --color=always $argv; 
 end
