@@ -1,9 +1,9 @@
 configuration {
-    modi: "run,drun";
+    modi: "drun";
 }
 * {
-    selected-normal-foreground:  rgba ( 248, 248, 242, 100 % );
-    foreground:                  rgba ( 248, 248, 242, 100 % );
+    foreground:                  rgba ( 255, 235, 255, 100 % );
+    selected-normal-foreground:  @foreground;
     normal-foreground:           @foreground;
     alternate-normal-background: rgba ( 39, 40, 34, 0 % );
     red:                         rgba ( 220, 50, 47, 100 % );
@@ -11,19 +11,18 @@ configuration {
     blue:                        rgba ( 38, 139, 210, 100 % );
     urgent-foreground:           rgba ( 249, 38, 114, 100 % );
     alternate-urgent-background: rgba ( 39, 40, 34, 0 % );
-    active-foreground:           rgba ( 166, 226, 42, 100 % );
+    active-foreground:           rgba ( 195, 140, 207, 81 % );
     lightbg:                     rgba ( 238, 232, 213, 100 % );
     selected-active-foreground:  rgba ( 166, 226, 42, 100 % );
     alternate-active-background: rgba ( 39, 40, 34, 0 % );
-    background:                  rgba ( 39, 40, 34, 93 % );
-    bordercolor:                 rgba ( 0, 43, 54, 100 % );
+    background:                  rgba ( 33, 33, 43, 80 % );
     alternate-normal-foreground: @foreground;
-    normal-background:           rgba ( 39, 40, 34, 0 % );
+    normal-background:           @background;
     lightfg:                     rgba ( 88, 104, 117, 100 % );
     selected-normal-background:  rgba ( 20, 20, 17, 100 % );
     border-color:                @foreground;
     spacing:                     2;
-    separatorcolor:              rgba( 255, 147, 160, 100 %);
+    separatorcolor:              rgba( 195, 140, 207, 100 %);
     urgent-background:           rgba ( 39, 40, 34, 0 % );
     selected-urgent-background:  rgba ( 249, 38, 114, 100 % );
     alternate-urgent-foreground: @urgent-foreground;
@@ -35,6 +34,7 @@ configuration {
 window {
     background-color: @background;
     border:           1;
+    border-radius:    15;
     padding:          5;
 }
 mainbox {
@@ -130,14 +130,14 @@ entry {
 }
 prompt {
     spacing:    0;
-    text-color: @normal-foreground;
+    text-color: @foreground;
 }
 inputbar {
     children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
 }
 textbox-prompt-colon {
     expand:     false;
-    str:        ":";
+    str:        "> ";
     margin:     0px 0.3em 0em 0em ;
     text-color: @normal-foreground;
 }

@@ -2,7 +2,7 @@
 #
 #       Ferit Yigit BALABAN <fyb@duck.com>, 2022
 #
-set 			$mod Mod4
+set 			    $mod Mod4
 floating_modifier 	$mod
 
 # Autostart 
