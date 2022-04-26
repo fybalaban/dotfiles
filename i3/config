@@ -110,7 +110,7 @@ set $mode_system System (l) lock, (e) logout, (r) reboot, (s) shutdown, (b) back
 mode "$mode_system" {
     bindsym l exec --no-startup-id sh ~/scripts/goingaway.sh, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym r exec --no-startup-id reboot, mode "default"
+    bindsym r exec --no-startup-id sh ~/scripts/reboot.sh, mode "default"
     bindsym s exec --no-startup-id sh ~/scripts/shutdown.sh, mode "default"
     bindsym b exec --no-startup-id sh ~/scripts/comingback.sh, mode "default"
     bindsym Return mode "default"
