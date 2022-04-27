@@ -1030,6 +1030,6 @@ map kitty_mod+- previous_window
 
 
 # BEGIN_KITTY_THEME
-# Hardcore
+# Tango Light
 include current-theme.conf
 # END_KITTY_THEME
