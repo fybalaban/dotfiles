@@ -1,4 +1,12 @@
 if status is-interactive
-    # Commands to run in interactive sessions can go here
-    $HOME/scripts/fetchpy
+    if test "$TERM" != "linux"
+        $HOME/scripts/fetchpy
+    end
 end
+
+if status is-login
+    if test (tty) = /dev/tty1
+        exec startx
+    end
+end
+
