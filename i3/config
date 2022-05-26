@@ -1,6 +1,6 @@
 # i3 config file (v4)
 #
-#       Ferit Yigit BALABAN <fyb@duck.com>, 2022
+#       Ferit Yigit BALABAN <f@fybx.dev>, 2022
 #
 set 			    $mod Mod4
 floating_modifier 	$mod
@@ -15,20 +15,19 @@ exec --no-startup-id ~/scripts/keyboard
 font pango:jetbrainsmono-regular 8
 
 # Volume - Media - Keyboard & Screen Brightness
-bindsym XF86AudioRaiseVolume 		exec --no-startup-id sh ~/scripts/volumeup.sh
-bindsym XF86AudioLowerVolume 		exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% 
-bindsym $mod+XF86AudioLowerVolume 	exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle 
+bindsym XF86AudioRaiseVolume 	exec --no-startup-id sh ~/scripts/volumeup.sh
+bindsym XF86AudioLowerVolume 	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% 
 bindsym XF86AudioMicMute 		exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle 
 
-bindsym XF86MonBrightnessUp 		exec --no-startup-id brightnessctl set +10% 
-bindsym XF86MonBrightnessDown 		exec --no-startup-id brightnessctl set 10%-
-bindsym $mod+XF86MonBrightnessUp 	exec --no-startup-id brightnessctl --device=asus::kbd_backlight set +33%
-bindsym $mod+XF86MonBrightnessDown 	exec --no-startup-id brightnessctl --device=asus::kbd_backlight set 33%-
+bindsym $mod+u          exec --no-startup-id brightnessctl set +10% 
+bindsym $mod+j          exec --no-startup-id brightnessctl set 10%-
+bindsym $mod+Shift+u    exec --no-startup-id brightnessctl --device=asus::kbd_backlight set +33%
+bindsym $mod+Shift+j           exec --no-startup-id brightnessctl --device=asus::kbd_backlight set 33%-
 
-bindsym XF86AudioPlay 			exec --no-startup-id playerctl play-pause
-bindsym XF86AudioStop 			exec --no-startup-id playerctl stop
-bindsym XF86AudioNext 			exec --no-startup-id playerctl next
-bindsym XF86AudioPrev 			exec --no-startup-id playerctl previous
+bindsym XF86AudioPlay 	exec --no-startup-id playerctl play-pause
+bindsym XF86AudioStop 	exec --no-startup-id playerctl stop
+bindsym XF86AudioNext 	exec --no-startup-id playerctl next
+bindsym XF86AudioPrev 	exec --no-startup-id playerctl previous
 
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+c reload
