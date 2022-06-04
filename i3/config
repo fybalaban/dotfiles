@@ -36,8 +36,10 @@ bindsym $mod+Shift+r restart
 # Start applications
 bindsym $mod+d 		exec --no-startup-id rofi -modi "drun" -show drun
 bindsym $mod+c 		exec --no-startup-id chromium
-bindsym $mod+Return 	exec --no-startup-id kitty
-bindsym $mod+Print	exec --no-startup-id flameshot gui
+bindsym $mod+Return exec --no-startup-id kitty
+bindsym $mod+x	    exec --no-startup-id flameshot gui
+bindsym $mod+s      exec --no-startuo-id thunar
+bindsym $mod+z      exec --no-startup-id obsidian
 
 # change focused cont. using arrow keys
 bindsym $mod+Left focus left
@@ -51,10 +53,7 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-bindsym $mod+h split h
-bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
-bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
