@@ -1,6 +1,6 @@
 if status is-interactive
     if test "$TERM" != "linux"
-        $HOME/scripts/fetchpy
+        $HOME/scripts/fetchpy2
     end
 end
 
