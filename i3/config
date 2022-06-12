@@ -7,10 +7,8 @@ floating_modifier 	$mod
 
 # Autostart 
 exec --no-startup-id picom -b
-exec --no-startup-id nitrogen --restore
 exec --no-startup-id ~/scripts/launch_polybar
-exec --no-startup-id ~/scripts/comingback.sh
-exec --no-startup-id ~/scripts/keyboard
+exec --no-startup-id ~/scripts/modeset.py --login
 
 font pango:jetbrainsmono-regular 8
 
