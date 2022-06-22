@@ -7,8 +7,8 @@ floating_modifier 	$mod
 
 # Autostart 
 exec --no-startup-id picom -b
-exec --no-startup-id ~/scripts/launch_polybar
 exec --no-startup-id ~/scripts/modeset.py --login
+exec --no-startup-id ~/scripts/launch_polybar
 
 font pango:jetbrainsmono-regular 8
 
