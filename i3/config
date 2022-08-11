@@ -37,7 +37,7 @@ bindsym $mod+d 		exec --no-startup-id rofi -modi "drun" -show drun
 bindsym $mod+c 		exec --no-startup-id chromium
 bindsym $mod+Return exec --no-startup-id kitty
 bindsym $mod+x	    exec --no-startup-id flameshot gui
-bindsym $mod+s      exec --no-startup-id thunar
+bindsym $mod+s      exec --no-startup-id pcmanfm 
 bindsym $mod+z      exec --no-startup-id obsidian
 bindsym $mod+q      exec --no-startup-id ~/scripts/modeset.py --wallp
 bindsym $mod+p      exec --no-startup-id ~/scripts/modeset.py --wallc
