@@ -143,3 +143,4 @@ textbox-prompt-colon {
 }
 
 @import "~/.cache/wal/colors-rofi-light.rasi"
+@theme "/usr/share/rofi/themes/sidebar.rasi"
