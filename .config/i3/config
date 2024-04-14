@@ -1,0 +1,114 @@
+# i3 config file (v4)
+#
+#       Ferit Yigit BALABAN <fyb@fybx.dev>, 2024
+#
+set 			$mod Mod4
+floating_modifier 	$mod
+
+font pango:SF Pro Display, 12
+
+# Autostart 
+
+
+# Volume - Media - Keyboard & Screen Brightness
+bindsym XF86AudioRaiseVolume 	exec --no-startup-id pamixer -i 5
+bindsym XF86AudioLowerVolume 	exec --no-startup-id pamixer -d 5
+bindsym XF86AudioMute           exec --no-startup-id pamixer -t 
+
+bindsym $mod+u          exec --no-startup-id brightnessctl set +10% 
+bindsym $mod+j          exec --no-startup-id brightnessctl set 10%-
+bindsym $mod+Shift+u    exec --no-startup-id brightnessctl --device=asus::kbd_backlight set +33%
+bindsym $mod+Shift+j    exec --no-startup-id brightnessctl --device=asus::kbd_backlight set 33%-
+
+bindsym XF86AudioPlay 	exec --no-startup-id playerctl play-pause
+bindsym XF86AudioStop 	exec --no-startup-id playerctl stop
+bindsym XF86AudioNext 	exec --no-startup-id playerctl next
+bindsym XF86AudioPrev 	exec --no-startup-id playerctl previous
+
+bindsym $mod+Shift+e kill
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+# Start applications
+bindsym $mod+d 		exec --no-startup-id ulauncher-toggle
+bindsym $mod+c          exec --no-startup-id firefox
+bindsym $mod+Return     exec --no-startup-id kitty
+bindsym $mod+x	        exec --no-startup-id kitty
+bindsym $mod+s          exec --no-startup-id nemo 
+bindsym $mod+z          exec --no-startup-id obsidian
+
+# change focused cont. using arrow keys
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused cont. using arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+f fullscreen toggle
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+
+bindsym $mod+1 workspace number "1"
+bindsym $mod+2 workspace number "2"
+bindsym $mod+3 workspace number "3"
+bindsym $mod+4 workspace number "4"
+bindsym $mod+5 workspace number "5"
+bindsym $mod+6 workspace number "6"
+bindsym $mod+7 workspace number "7"
+bindsym $mod+8 workspace number "8"
+bindsym $mod+9 workspace number "9"
+bindsym $mod+0 workspace number "10"
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number "1"
+bindsym $mod+Shift+2 move container to workspace number "2"
+bindsym $mod+Shift+3 move container to workspace number "3"
+bindsym $mod+Shift+4 move container to workspace number "4"
+bindsym $mod+Shift+5 move container to workspace number "5"
+bindsym $mod+Shift+6 move container to workspace number "6"
+bindsym $mod+Shift+7 move container to workspace number "7"
+bindsym $mod+Shift+8 move container to workspace number "8"
+bindsym $mod+Shift+9 move container to workspace number "9"
+bindsym $mod+Shift+0 move container to workspace number "10"
+
+mode "resize" {
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+
+set $mode_system System (l) lock, (e) logout, (r) reboot, (s) shutdown, (b) back
+mode "$mode_system" {
+    bindsym l exec --no-startup-id ~/scripts/modeset.py --lock, mode "default"
+    bindsym m exec --no-startup-id i3-msg exit, mode "default"
+    bindsym r exec --no-startup-id sh ~/scripts/reboot.sh, mode "default"
+    bindsym p exec --no-startup-id sh ~/scripts/shutdown.sh, mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+BackSpace mode "$mode_system"
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #FF93D5 #FF93A0 #282A2E #FF93A0   #FF93D5
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
+
+for_window [class=".*"] border pixel 0
+smart_borders on
+gaps inner 10

@@ -1,0 +1,124 @@
+//
+//      Ferit Yigit BALABAN,            <fybalaban@fybx.dev>
+//      waybar config,                  2023
+//
+
+{
+	"layer": "top",
+	"modules-left": ["custom/arch", "cpu", "memory", "temperature"],
+	"modules-right": [
+	    "custom/nowplaying",
+	    "backlight",
+	    "pulseaudio#mic",
+	    "pulseaudio",
+	    "battery",
+	    "network#e",
+	    "network#w",
+	    "clock"
+	],
+	
+    "custom/arch": {
+        "format": "󰣇  navi",
+        "tooltip": false,
+    },
+
+    "clock": {
+        "interval": 60,
+        "tooltip": true,
+        "format": "{:%a %d %b %H:%M}",
+        "tooltip-format": "Week of the year: {:%W}",
+        "on-click": "swaync-client -t"
+    },
+
+    "cpu": {
+        "interval": 15,
+        "tooltip": false,
+        "format": "  {usage}%",
+    },
+
+    "memory": {
+        "interval": 15,
+        "format": "  {}%",
+        "max-length": 10
+    },
+
+    "temperature": {
+        "interval": 15,
+        "format": "󱩅  {temperatureC}°C",
+        "tooltip": false,
+    },
+
+    "custom/nowplaying": {
+        "exec": "~/scripts/nowplaying",
+        "interval": 5,
+        "on-click": "playerctl play-pause",
+        "format": "󰽰  {}",
+        "tooltip": false
+    },
+
+    "backlight": {
+        "device": "amdgpu_bl0",
+        "format": "{icon}  {percent}%",
+        "format-icons": ["󰃞", "󰃟", "󰃝", "󰃠"],
+        "scroll-step": 5.0,
+        "tooltip": false,
+        "interval": 5,
+        "on-click": "~/scripts/utility/deskenv.sh nobright toggle"
+    },
+
+    "pulseaudio": {
+		"tooltip": false,
+		"scroll-step": 5,
+		"format": "{icon}  {volume}%",
+		"format-muted": "󰝟  {volume}%",
+		"on-click": "pamixer -t",
+		"format-icons": {
+			"default": ["󰕿", "󰖀", "󰕾"]
+		}
+	},
+
+	"pulseaudio#mic": {
+        "tooltip": false,
+        "format": "{format_source}",
+        "format-source": "󰍬",
+        "format-source-muted": "󰍭",
+        "on-click": "pamixer --default-source -t",
+	},
+
+	"network#e": {
+        "interval": 10,
+		"tooltip": true,
+        "interface": "enp2s0",
+		"format": "󰌗",
+        "format-disconnected": "",
+        "tooltip-format": "{ifname} | {ipaddr}",
+	},
+
+    "network#w": {
+        "interval": 10,
+        "tooltip": true,
+        "interface": "wlp3s0",
+        "format": "",
+        "format-wifi": "",
+        "format-disconnected": "",
+        "format-disabled": "",
+        "tooltip-format": "{ifname} | {ipaddr} | {essid}",
+    },
+
+    "battery": {
+        "interval": "60",
+        "bat": "BAT0",
+        "adapter": "ADP0",
+        "states": {
+            "good": 90,
+            "warning": 60,
+            "critical": 30
+        },
+
+        "tooltip": true,
+        "tooltip-format": "{capacity}%",
+        "format": "{icon}",
+        "format-charging": "{capacity}% {icon}",
+        "format-icons": [" ", " ", " ", " ", " "]
+    },
+}

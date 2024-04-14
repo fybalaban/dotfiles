@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+        "emeraldwalk.runonsave": {
+            "commands": [
+                {
+                    "match": "style.scss",
+                    "isAsync": true,
+                    "cmd": "sass --no-source-map style.scss:style.css && swaync-client -rs"
+                },
+				{
+					"match": "config.json",
+					"isAsync": true,
+					"cmd": "swaync-client -R"
+				}
+            ]
+        }
+    }
+}

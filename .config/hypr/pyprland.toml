@@ -1,0 +1,28 @@
+[pyprland]
+plugins = [ "scratchpads" ]
+
+[scratchpads.terminal]
+command = "kitty --class scratchpad"
+animation = "fromBottom"
+unfocus = "hide"
+
+[scratchpads.notepad]
+command = "kitty --class notepad --session sessions/notepad.conf"
+lazy = true
+animation = "fromRight"
+class = "notepad"
+unfocus = "false"
+
+[scratchpads.keepassxc]
+command = "/sbin/keepassxc"
+lazy = true
+animation = "fromBottom"
+class = "org.keepassxc.KeePassXC"
+unfocus = "hide"
+
+[scratchpads.nemo]
+command = "nemo"
+lazy = true
+animation = "fromBottom"
+unfocus = "hide"
+

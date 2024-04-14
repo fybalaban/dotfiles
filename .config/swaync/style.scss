@@ -1,0 +1,316 @@
+/*
+ * vim: ft=less
+ */
+@use "sass:math";
+
+$pxTrayOuterRadius: 24px;
+$pxTrayInnerPadding: 12px;
+$pxWidgetRadius: math.div($pxTrayOuterRadius, 2);
+
+$clrTrayBackground: rgba(255, 255, 255, 0.3);
+$clrWidgetBackground: rgba(255, 255, 255, 0.35);
+$clrWidgetBackgroundHover: rgba(255, 255, 255, 0.45);
+
+$clrText: #000000;
+$clrTextFaded: #404040;
+
+$noti-bg: $clrWidgetBackground;
+$noti-bg-alt: rgb(94, 255, 0);
+$noti-bg-darker: rgb(94, 255, 0);
+$noti-bg-focus: rgb(94, 255, 0);
+
+$clrNotificationDismissButton: $clrWidgetBackgroundHover;
+$noti-close-bg-hover: rgba(255, 255, 255, 0.15);
+
+
+$text-color-disabled: rgb(150, 150, 150);
+
+$clrDNDButtonChecked: rgb(80, 167, 255);
+
+/* Window behind control center and on all other monitors */
+.blank-window {
+    // Keeping it transparent for applying layerrule blur in hyprland
+    background: transparent;
+}
+
+.control-center {
+    background: $clrTrayBackground;
+    border-radius: 24px;
+    padding: $pxTrayInnerPadding;
+}
+
+.floating-notifications {
+    background: transparent;
+}
+
+.background {
+    background: transparent;
+}
+
+.notification-row {
+    background: transparent;
+}
+
+.notification {
+    background: transparent;
+    border-radius: 12px;
+    margin: 6px 12px;
+    padding: 0;
+    box-shadow: none;
+}
+
+.notification-content {
+    background: transparent;
+    padding: 6px;
+    border-radius: 12px;
+}
+
+.close-button {
+    background: $clrNotificationDismissButton;
+    color: $clrText;
+    text-shadow: none;
+    padding: 0;
+    border-radius: 100%;
+    margin-top: 10px;
+    margin-right: 16px;
+    box-shadow: none;
+    border: none;
+    min-width: 24px;
+    min-height: 24px;
+
+    &:hover {
+        box-shadow: none;
+        background: $noti-close-bg-hover;
+        transition: all 0.15s ease-in-out;
+        border: none;
+    }
+}
+
+.notification-default-action,
+.notification-action {
+    padding: 4px;
+    margin: 0;
+    box-shadow: none;
+    background: $noti-bg;
+    color: $clrText;
+    transition: all 0.15s ease-in-out;
+
+    &:hover {
+        -gtk-icon-effect: none;
+        background: $clrWidgetBackgroundHover;
+    }
+}
+
+.notification-default-action {
+    border-radius: 12px;
+
+    /* When alternative actions are visible */
+    &:not(:only-child) {
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+}
+
+.notification-action {
+    border-radius: 0px;
+    border-top: none;
+    border-right: none;
+
+    /* add bottom border radius to eliminate clipping */
+    &:first-child {
+            border-bottom-left-radius: 10px;
+    }
+
+    &:last-child {
+        border-bottom-right-radius: 10px;
+    }
+}
+
+.inline-reply {
+    margin-top: 8px;
+}
+
+.inline-reply-entry {
+    background: $noti-bg-darker;
+    color: $clrText;
+    caret-color: $clrText;
+    border-radius: 12px;
+}
+
+.inline-reply-button {
+    margin-left: 4px;
+    background: $noti-bg;
+    border-radius: 12px;
+    color: $clrText;
+
+    &:disabled {
+        background: initial;
+        color: $text-color-disabled;
+        border: 1px solid transparent;
+    }
+
+    &:hover {
+        background: $clrWidgetBackgroundHover;
+    }
+}
+
+.image {
+    border-radius: $pxTrayInnerPadding;
+}
+
+.body-image {
+    margin-top: 6px;
+    background-color: white;
+    border-radius: 12px;
+}
+
+.summary {
+    font-size: 16px;
+    font-weight: bold;
+    background: transparent;
+    color: $clrText;
+    text-shadow: none;
+}
+
+.time {
+    font-size: 16px;
+    font-weight: bold;
+    background: transparent;
+    color: $clrText;
+    text-shadow: none;
+    margin-right: 18px;
+}
+
+.body {
+    font-size: 14px;
+    font-weight: normal;
+    background: transparent;
+    color: $clrText;
+    text-shadow: none;
+}
+
+// Section: Widgets
+
+// Label widget: Control Center
+.widget-label {
+    label {
+        font-size: 1.5rem;
+    }
+}
+
+// Title widget: Notifications
+.widget-title {
+    font-size: 1rem;
+
+    button {
+        color: $clrText;
+        text-shadow: none;
+        background: $noti-bg;
+        box-shadow: none;
+        border-radius: 12px;
+
+        &:hover {
+            background: $clrWidgetBackgroundHover;
+        }
+    }
+}
+
+/* DND widget */
+.widget-dnd {
+    font-size: 0.9rem;
+
+    switch {
+        border-radius: $pxTrayInnerPadding;
+        background: $noti-bg;
+        box-shadow: none;
+
+        slider {
+            background: $clrWidgetBackgroundHover;
+            border-radius: 12px;
+        }
+
+        &:checked {
+            background: $clrDNDButtonChecked;
+        }
+    }
+}
+
+.widget-mpris-player {
+    background: $clrWidgetBackground;
+    border-radius: $pxWidgetRadius;
+    color: $clrText;
+    padding: 12px;
+}
+
+.widget-mpris-title {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.widget-mpris-subtitle {
+    font-size: 1rem;
+}
+
+.widget-buttons-grid {
+    border-radius: $pxWidgetRadius;
+    background-color: $clrWidgetBackground;
+    font-size: 1rem;
+    font-weight: bolder;
+
+    flowbox flowboxchild button {
+        padding: 16px 8px;
+        color: $clrTextFaded;
+        background: $clrWidgetBackground;
+        border-radius: 12px;
+        box-shadow: 2px 2px 2px 1px #00000020;
+
+        &:hover {
+            background: $clrWidgetBackgroundHover;
+        }
+    }
+}
+
+.widget-backlight {
+    background-color: $clrWidgetBackground;
+    padding: $pxTrayInnerPadding;
+    border-radius: $pxWidgetRadius;
+    
+    label {
+        color: $clrTextFaded;
+        font-size: 2rem;
+        margin-right: $pxTrayInnerPadding * 2;
+    }
+}
+
+.widget-volume {
+    background-color: $clrWidgetBackground;
+    padding: $pxTrayInnerPadding;
+    border-radius: $pxWidgetRadius;
+
+    box {
+        label {
+            color: $clrTextFaded;
+            font-size: 2rem;
+            margin-right: $pxTrayInnerPadding * 2;
+        }
+    }
+}
+
+/* Title widget */
+.widget-inhibitors {
+    margin: 8px;
+    font-size: 1.5rem;
+
+    button {
+        font-size: initial;
+        color: $clrText;
+        text-shadow: none;
+        background: $noti-bg;
+        box-shadow: none;
+        border-radius: 12px;
+
+        &:hover {
+            background: $clrWidgetBackgroundHover;
+        }
+    }
+}

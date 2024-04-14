@@ -1,0 +1,17 @@
+sort=-time
+layer=overlay
+text-color=#202020
+background-color=#FFFFFF70
+width=300
+height=110
+border-size=0
+border-radius=10
+icons=1
+default-timeout=5000
+ignore-timeout=1
+markup=1
+font=SF Pro Display 12
+padding=10
+
+[urgency=high]
+default-timeout=0

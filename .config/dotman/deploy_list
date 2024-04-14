@@ -1,0 +1,24 @@
+# shellcheck disable=SC2148
+# shellcheck disable=SC1035
+%anyrun
+%btop
+%emacs
+%fish
+%hypr
+%i3
+%kitty
+%mako
+%pypr
+%swaync
+%waybar
+
+%dotman
+!%dotman/managed_repo
+
+!%emacs/eln-cache
+!%emacs/elpaca
+
+.backupexclude
+.bashrc
+.bash_profile
+.gitconfig

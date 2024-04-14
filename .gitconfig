@@ -1,0 +1,25 @@
+[credential]
+	helper = libsecret
+	username = fybx
+[user]
+	email = fyb@fybx.dev
+	name = Yigid BALABAN
+	signingKey = E21FEB2C244CB7EB
+[init]
+	defaultBranch = main
+[core]
+	editor = emacs -nw
+	quotepath = off
+[pull]
+	rebase = false
+[commit]
+	gpgSign = true
+[gpg]
+	program = /usr/bin/gpg
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[tag]
+	forceSignAnnotated = true

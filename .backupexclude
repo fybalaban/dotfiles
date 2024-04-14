@@ -1,0 +1,12 @@
+Downloads
+build
+repos
+vault
+.vscode
+.cache
+.cargo
+.config/chromium/Default/Service Worker/CacheStorage
+.nuget/packages
+.npm/_cacache
+.local/share/Trash
+.rustup/

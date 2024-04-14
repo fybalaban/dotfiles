@@ -1,0 +1,34 @@
+* {
+  border: none;
+  font-family: "SF Pro Display", "JetBrains Mono Nerd Font", sans-serif;
+  font-size: 14px;
+  margin: 2px 6px;
+}
+
+window#waybar {
+  background: rgba(37, 32, 37, 0.3137254902);
+}
+
+#clock, #backlight, #cpu, #memory, #temperature, #custom-nowplaying, #custom-arch, #pulseaudio, #battery, #network {
+  color: white;
+  min-width: 20px;
+}
+
+#clock {
+  margin: 0 0 0 15px;
+  font-weight: bold;
+}
+
+#battery.charging {
+  color: #8AFF90;
+}
+
+#battery.warning {
+  color: #FFD08A;
+}
+
+#battery.critical {
+  color: #FF8A8A;
+}
+
+/*# sourceMappingURL=style.css.map */
