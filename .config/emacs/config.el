@@ -61,3 +61,22 @@
 (add-hook 'org-mode-hook 'org-indent-mode)
 
 (set-face-background 'default nil)
+
+(setq org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+
+(unless (boundp 'org-latex-classes)
+  (setq org-latex-classes nil))
+
+(add-to-list 'org-latex-classes '("article"
+                                  "\\documentclass[12pt]{article}
+                                       \\setlength{\\parskip}{\\baselineskip}%
+                                       \\setlength{\\parindent}{0pt}%
+                                       \\usepackage{booktabs} \\usepackage{graphicx}
+                                       \\usepackage[a4paper,margin=2.5cm]{geometry}
+                                       \\usepackage[hidelinks]{hyperref}
+                                       \\usepackage{lmodern}
+                                       \\usepackage{enumitem}
+                                       \\setlistdepth{12}
+                                       \\renewcommand{\\contentsname}{Icerik}"))
