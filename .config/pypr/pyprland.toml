@@ -18,7 +18,7 @@ command = "/sbin/keepassxc"
 lazy = true
 animation = "fromBottom"
 class = "org.keepassxc.KeePassXC"
-unfocus = "hide"
+unfocus = "false"
 
 [scratchpads.nemo]
 command = "nemo"

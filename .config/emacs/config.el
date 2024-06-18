@@ -3,9 +3,9 @@
 (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
 (defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
 (defvar elpaca-order '(elpaca :repo "https://github.com/progfolio/elpaca.git"
-			      :ref nil :depth 1
-			      :files (:defaults "elpaca-test.el" (:exclude "extensions"))
-			      :build (:not elpaca--activate-package)))
+                              :ref nil :depth 1
+                              :files (:defaults "elpaca-test.el" (:exclude "extensions"))
+                              :build (:not elpaca--activate-package)))
 (let* ((repo  (expand-file-name "elpaca/" elpaca-repos-directory))
        (build (expand-file-name "elpaca/" elpaca-builds-directory))
        (order (cdr elpaca-order))
@@ -15,20 +15,20 @@
     (make-directory repo t)
     (when (< emacs-major-version 28) (require 'subr-x))
     (condition-case-unless-debug err
-	(if-let ((buffer (pop-to-buffer-same-window "*elpaca-bootstrap*"))
-		 ((zerop (apply #'call-process `("git" nil ,buffer t "clone"
-						 ,@(when-let ((depth (plist-get order :depth)))
-						     (list (format "--depth=%d" depth) "--no-single-branch"))
-						 ,(plist-get order :repo) ,repo))))
-		 ((zerop (call-process "git" nil buffer t "checkout"
-				       (or (plist-get order :ref) "--"))))
-		 (emacs (concat invocation-directory invocation-name))
-		 ((zerop (call-process emacs nil buffer nil "-Q" "-L" "." "--batch"
-				       "--eval" "(byte-recompile-directory \".\" 0 'force)")))
-		 ((require 'elpaca))
-		 ((elpaca-generate-autoloads "elpaca" repo)))
-	    (progn (message "%s" (buffer-string)) (kill-buffer buffer))
-	  (error "%s" (with-current-buffer buffer (buffer-string))))
+        (if-let ((buffer (pop-to-buffer-same-window "*elpaca-bootstrap*"))
+                 ((zerop (apply #'call-process `("git" nil ,buffer t "clone"
+                                                 ,@(when-let ((depth (plist-get order :depth)))
+                                                     (list (format "--depth=%d" depth) "--no-single-branch"))
+                                                 ,(plist-get order :repo) ,repo))))
+                 ((zerop (call-process "git" nil buffer t "checkout"
+                                       (or (plist-get order :ref) "--"))))
+                 (emacs (concat invocation-directory invocation-name))
+                 ((zerop (call-process emacs nil buffer nil "-Q" "-L" "." "--batch"
+                                       "--eval" "(byte-recompile-directory \".\" 0 'force)")))
+                 ((require 'elpaca))
+                 ((elpaca-generate-autoloads "elpaca" repo)))
+            (progn (message "%s" (buffer-string)) (kill-buffer buffer))
+          (error "%s" (with-current-buffer buffer (buffer-string))))
       ((error) (warn "%s" err) (delete-directory repo 'recursive))))
   (unless (require 'elpaca-autoloads nil t)
     (require 'elpaca)
@@ -37,13 +37,40 @@
 (add-hook 'after-init-hook #'elpaca-process-queues)
 (elpaca `(,@elpaca-order))
 
-(elpaca elpaca-use-package (elpaca-use-package-mode))
-(elpaca-wait)
+;; Install use-package support
+(elpaca elpaca-use-package
+  ;; Enable use-package :ensure support for Elpaca.
+  (elpaca-use-package-mode))
+
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+;; handy use-package integration
+(straight-use-package 'use-package)
+
+;; (elpaca-wait)
 (use-package beacon
+  :straight t
   :ensure t
   :demand t
   :config
   (beacon-mode 1))
+
+;; (elpaca-wait)
+(use-package autothemer :straight t :ensure t)
 
 (global-set-key (kbd "C-c l") #'org-store-link)
 (global-set-key (kbd "C-c a") #'org-agenda)
@@ -51,13 +78,13 @@
 
 ;; 1. sets the directory where backup files are kept
 ;; 2. sets the directory where auto-saved file are kept
-(setq backup-directory-alist '(("." . "~/vault/org/backups")))
-(setq auto-save-file-name-transforms '((".*" "~/vault/org/backups/" t)))
+;; (setq backup-directory-alist '(("." . "~/vault/org/backups")))
+;; (setq auto-save-file-name-transforms '((".*" "~/vault/org/backups/" t)))
 
 (global-visual-line-mode 1)
 (display-line-numbers-mode 1)
 
-(setq custom-theme-directory "~/vault/org/themes/")
+
 (add-hook 'org-mode-hook 'org-indent-mode)
 
 (set-face-background 'default nil)
@@ -80,3 +107,25 @@
                                        \\usepackage{enumitem}
                                        \\setlistdepth{12}
                                        \\renewcommand{\\contentsname}{Icerik}"))
+
+(setq custom-theme-directory "~/.config/emacs/themes")
+
+  (defun file-to-string (file)
+     "File to string function"
+     (with-temp-buffer
+       (insert-file-contents file)
+       (buffer-substring-no-properties (point-min) (point-max))))
+
+  (defun load-my-theme ()
+  (setq reve-mode (string-trim (file-to-string "~/.config/navi/desktop_mode")))
+  (if (string= reve-mode "light")
+      (progn
+        (message "Loading light theme...")
+        (load-theme 'rose-pine-dawn t))
+    (if (string= reve-mode "dark")
+        (progn
+          (message "Loading dark theme...")
+          (load-theme 'rose-pine-moon t)))))
+
+(with-eval-after-load 'autothemer
+  (load-my-theme))

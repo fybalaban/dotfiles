@@ -17,6 +17,7 @@
 
 !%emacs/eln-cache
 !%emacs/elpaca
+!%emacs/straight
 
 .backupexclude
 .bashrc

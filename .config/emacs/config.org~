@@ -1,4 +1,4 @@
-#+Title:Yigid's Basedmacs Config
+#+TITLE:Yigid's Basedmacs Config
 #+AUTHOR: Ferit Yigid BALABAN (fyb)
 #+DESCRIPTION: fyb's personal based gnu emacs configuration.
 #+OPTIONS: toc:2
@@ -101,7 +101,14 @@ deprecated in favor of straight.el
 #+begin_src emacs-lisp
 
   ;; (elpaca-wait)
-  (use-package autothemer :straight t :ensure t)
+  (use-package autothemer :ensure t)
+
+  (straight-use-package
+   '(rose-pine-emacs
+     :host github
+     :repo "thongpv87/rose-pine-emacs"
+     :branch "master"))
+  (load-theme 'rose-pine-moon t)
 
 #+end_src
 
@@ -121,8 +128,8 @@ deprecated in favor of straight.el
 
   ;; 1. sets the directory where backup files are kept
   ;; 2. sets the directory where auto-saved file are kept
-  ;; (setq backup-directory-alist '(("." . "~/vault/org/backups")))
-  ;; (setq auto-save-file-name-transforms '((".*" "~/vault/org/backups/" t)))
+  (setq backup-directory-alist '(("." . "~/vault/org/backups")))
+  (setq auto-save-file-name-transforms '((".*" "~/vault/org/backups/" t)))
 
   (global-visual-line-mode 1)
   (display-line-numbers-mode 1)
@@ -168,7 +175,6 @@ deprecated in favor of straight.el
        (insert-file-contents file)
        (buffer-substring-no-properties (point-min) (point-max))))
 
-  (defun load-my-theme ()
   (setq reve-mode (string-trim (file-to-string "~/.config/navi/desktop_mode")))
   (if (string= reve-mode "light")
       (progn
@@ -177,11 +183,7 @@ deprecated in favor of straight.el
     (if (string= reve-mode "dark")
         (progn
           (message "Loading dark theme...")
-          (load-theme 'rose-pine-moon t)))))
-
-(with-eval-after-load 'autothemer
-  (load-my-theme))
-
+          (load-theme 'rose-pine-moon t))))
 
 #+end_src
 

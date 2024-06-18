@@ -1,34 +1,64 @@
 * {
+  color: white;
   border: none;
-  font-family: "SF Pro Display", "JetBrains Mono Nerd Font", sans-serif;
+  border-radius: 0;
+  font-family: "Noto Sans", "JetBrains Mono Nerd Font", sans-serif;
   font-size: 14px;
-  margin: 2px 6px;
+  margin: 1px 8px;
 }
 
 window#waybar {
-  background: rgba(37, 32, 37, 0.3137254902);
+  background: rgba(37, 32, 37, 0.062745098);
 }
 
-#clock, #backlight, #cpu, #memory, #temperature, #custom-nowplaying, #custom-arch, #pulseaudio, #battery, #network {
+#clock,
+#backlight,
+#cpu,
+#memory,
+#temperature,
+#custom-nowplaying,
+#custom-arch,
+#pulseaudio,
+#battery,
+#network {
   color: white;
-  min-width: 20px;
 }
 
 #clock {
-  margin: 0 0 0 15px;
+  margin: 0;
   font-weight: bold;
 }
 
 #battery.charging {
-  color: #8AFF90;
+  color: #8aff90;
 }
 
 #battery.warning {
-  color: #FFD08A;
+  color: #ffd08a;
 }
 
 #battery.critical {
-  color: #FF8A8A;
+  color: #ff8a8a;
+}
+
+#workspaces button.active {
+  color: white;
+  font-weight: bold;
+}
+#workspaces button.active.hosting-monitor {
+  border-bottom: 1px solid white;
+}
+#workspaces button.hosting-monitor:not(.active) {
+  border-bottom: 1px solid gray;
+}
+
+window#waybar.empty #window {
+  margin: 0;
+  background-color: transparent;
+}
+
+window#waybar #window {
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=style.css.map */

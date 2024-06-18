@@ -1,27 +1,73 @@
 //
-//      Ferit Yigit BALABAN,            <fybalaban@fybx.dev>
-//      waybar config,                  2023
+//      Yigid BALABAN,            <fyb@fybx.dev>
+//      waybar config,                  2024
 //
-
 {
-	"layer": "top",
-	"modules-left": ["custom/arch", "cpu", "memory", "temperature"],
-	"modules-right": [
-	    "custom/nowplaying",
-	    "backlight",
-	    "pulseaudio#mic",
-	    "pulseaudio",
-	    "battery",
-	    "network#e",
-	    "network#w",
-	    "clock"
-	],
-	
+    "layer": "top",
+    "modules-left": [
+        "custom/arch",
+        "hyprland/window",
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "custom/nowplaying",
+        "pulseaudio#mic",
+        "pulseaudio",
+        "battery",
+        "group/hardware",
+        "network#e",
+        "network#w"
+    ],
+
+    "group/hardware": {
+		"orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false,
+            "children-class": "grpHardware"
+        },
+		"modules": [
+            "cpu",
+			"memory",
+			"temperature",
+            "backlight"
+		]
+	},
+
     "custom/arch": {
-        "format": "󰣇  navi",
-        "tooltip": false,
+        "format": "󰣇 ",
+        "tooltip": false
     },
 
+    "hyprland/window": {
+        "format": "{}",
+        "rewrite": {
+            "(.*) — Mozilla Firefox": "Firefox",
+            "(.*) - VSCodium": "VSCodium",
+            "~": "🗒️"
+        },
+        "separate-outputs": true
+    },
+
+    "hyprland/workspaces": {
+        "active-only": false,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "一",
+            "2": "二",
+            "3": "三",
+            "4": "四",
+            "5": "五",
+            "6": "六",
+            "7": "七",
+            "8": "八",
+            "9": "九",
+            "10": "十"
+        }
+    },
     "clock": {
         "interval": 60,
         "tooltip": true,
@@ -29,25 +75,21 @@
         "tooltip-format": "Week of the year: {:%W}",
         "on-click": "swaync-client -t"
     },
-
     "cpu": {
         "interval": 15,
         "tooltip": false,
-        "format": "  {usage}%",
+        "format": "  {usage}%"
     },
-
     "memory": {
         "interval": 15,
         "format": "  {}%",
         "max-length": 10
     },
-
     "temperature": {
         "interval": 15,
         "format": "󱩅  {temperatureC}°C",
-        "tooltip": false,
+        "tooltip": false
     },
-
     "custom/nowplaying": {
         "exec": "~/scripts/nowplaying",
         "interval": 5,
@@ -55,45 +97,50 @@
         "format": "󰽰  {}",
         "tooltip": false
     },
-
     "backlight": {
         "device": "amdgpu_bl0",
-        "format": "{icon}  {percent}%",
-        "format-icons": ["󰃞", "󰃟", "󰃝", "󰃠"],
-        "scroll-step": 5.0,
+        "format": "{icon}   {percent}%",
+        "format-icons": [
+            "󰃞",
+            "󰃟",
+            "󰃝",
+            "󰃠"
+        ],
+        "scroll-step": 5,
         "tooltip": false,
         "interval": 5,
         "on-click": "~/scripts/utility/deskenv.sh nobright toggle"
     },
-
     "pulseaudio": {
-		"tooltip": false,
-		"scroll-step": 5,
-		"format": "{icon}  {volume}%",
-		"format-muted": "󰝟  {volume}%",
-		"on-click": "pamixer -t",
-		"format-icons": {
-			"default": ["󰕿", "󰖀", "󰕾"]
-		}
-	},
-
-	"pulseaudio#mic": {
+        "tooltip": false,
+        "scroll-step": 5,
+        "format": "{icon}   {volume}%",
+        "format-muted": "󰝟   {volume}%",
+        "on-click": "pamixer -t",
+        "format-icons": {
+            "default": [
+                "󰕿",
+                "󰖀",
+                "󰕾"
+            ]
+        }
+    },
+    "pulseaudio#mic": {
         "tooltip": false,
         "format": "{format_source}",
         "format-source": "󰍬",
         "format-source-muted": "󰍭",
-        "on-click": "pamixer --default-source -t",
-	},
-
-	"network#e": {
+        "on-click": "pamixer --default-source -t"
+    },
+    "network#e": {
         "interval": 10,
-		"tooltip": true,
+        "tooltip": true,
         "interface": "enp2s0",
-		"format": "󰌗",
+        "format": "󰌗",
         "format-disconnected": "",
         "tooltip-format": "{ifname} | {ipaddr}",
-	},
-
+        "on-click": ""
+    },
     "network#w": {
         "interval": 10,
         "tooltip": true,
@@ -102,23 +149,26 @@
         "format-wifi": "",
         "format-disconnected": "",
         "format-disabled": "",
-        "tooltip-format": "{ifname} | {ipaddr} | {essid}",
+        "tooltip-format": "{ifname} | {ipaddr} | {essid}"
     },
-
     "battery": {
         "interval": "60",
         "bat": "BAT0",
         "adapter": "ADP0",
+        "full-at": 99,
         "states": {
-            "good": 90,
-            "warning": 60,
+            "good": 85,
+            "warning": 50,
             "critical": 30
         },
-
-        "tooltip": true,
-        "tooltip-format": "{capacity}%",
-        "format": "{icon}",
-        "format-charging": "{capacity}% {icon}",
-        "format-icons": [" ", " ", " ", " ", " "]
-    },
+        "format": "{icon}   {capacity}%",
+        "format-charging": "{icon}   {capacity}%",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    }
 }
