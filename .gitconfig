@@ -23,3 +23,5 @@
 	required = true
 [tag]
 	forceSignAnnotated = true
+[alias]
+	tuah = push
