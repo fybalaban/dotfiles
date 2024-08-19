@@ -3,13 +3,24 @@ window {
 }
 
 entry {
-    background-color: #202020;
-    border: 1px solid #303030;
-    border-radius: 16px 16px 0 0;
+    border: none;
+    box-shadow: 0 8px 16px -8px #555;
+    border-radius: 8px;
+    font-size: 16px;
+    padding: 8px 16px;
+
+    margin-bottom: 16px;
+}
+
+main {
+    border: none;
+    border-radius: 8px;
     font-size: 16px;
     padding: 8px 16px;
 }
 
 list {
-    border-radius: 0 0 16px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
 }

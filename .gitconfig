@@ -1,6 +1,5 @@
 [credential]
 	helper = libsecret
-	username = fybx
 [user]
 	email = fyb@fybx.dev
 	name = Yigid BALABAN
