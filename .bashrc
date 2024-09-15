@@ -22,3 +22,5 @@ PS1='[\u@\h \W]\$ '
 # source ~/.cache/wal/colors-tty.sh
 
 export PATH=$PATH:~/.local/bin/reve
+export PATH="$PATH:/home/yigid/.local/reve"
+export PATH="$PATH:/home/yigid/.local/bin/reve"

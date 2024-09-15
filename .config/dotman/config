@@ -1,1 +1,4 @@
-repo_url = 'https://github.com/fybx/dotfiles'
+managed_repo = "/home/yigid/.local/state/dotman/managed_repo"
+deploy_list = "/home/yigid/.config/dotman/deploy_list"
+config_file = "/home/yigid/.config/dotman/config"
+repo_url = "https://github.com/fybx/dotfiles"

@@ -1,5 +1,4 @@
-# shellcheck disable=SC2148
-# shellcheck disable=SC1035
+%dotman
 %anyrun
 %btop
 %emacs
@@ -12,9 +11,7 @@
 %reve
 %swaync
 %waybar
-
-%dotman
-!%dotman/managed_repo
+%nvim
 
 !%emacs/eln-cache
 !%emacs/elpaca
